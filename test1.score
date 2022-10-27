@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<score bpm="60" beatspermeasure="4">
+   <instrument instrument="ToneInstrument">
+      <note measure="1" beat="1" duration="1.9" note="C4"/>
+      <note measure="1" beat="3" duration="1.9" note="G4"/>
+      <note measure="2" beat="1" duration="3.7" note="C5"/>  
+       <note measure="2" beat="4.75" duration="0.25" note="C4"/>
+      <note measure="2" beat="4.75" duration="0.25" note="E4"/>
+      <note measure="2" beat="4.75" duration="0.25" note="G4"/> 
+       <note measure="3" beat="1.25" duration="4.75" note="C4"/>
+      <note measure="3" beat="1.25" duration="4.75" note="Eb4"/>
+      <note measure="3" beat="1.25" duration="4.75" note="G4"/>
+   </instrument>
+</score>
