@@ -54,5 +54,7 @@ private:
 public:
 	// Get the time since we started generating audio
 	double GetTime();
+
+	double t;
 };
 
