@@ -1,6 +1,6 @@
 #pragma once
 #include "AudioNode.h"
-class CAR 
+class CAR :
 	public CAudioNode
 {
 public:
