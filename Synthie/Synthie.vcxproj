@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Additive.cpp" />
     <ClCompile Include="AR.cpp" />
     <ClCompile Include="AudioNode.cpp" />
     <ClCompile Include="audio\DirSound.cpp" />
@@ -143,6 +144,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Synthesizer.cpp" />
+    <ClCompile Include="SynthesizerAdd.cpp" />
     <ClCompile Include="Synthie.cpp" />
     <ClCompile Include="SynthieView.cpp" />
     <ClCompile Include="audio\Wave.cpp" />
@@ -151,6 +153,7 @@
     <ClCompile Include="ToneInstrument.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Additive.h" />
     <ClInclude Include="AR.h" />
     <ClInclude Include="AudioNode.h" />
     <ClInclude Include="audio\DirSound.h" />
@@ -166,6 +169,7 @@
     <ClInclude Include="SineWave.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Synthesizer.h" />
+    <ClInclude Include="SynthesizerAdd.h" />
     <ClInclude Include="Synthie.h" />
     <ClInclude Include="SynthieView.h" />
     <ClInclude Include="targetver.h" />
