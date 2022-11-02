@@ -19,6 +19,8 @@ BEGIN_MESSAGE_MAP(CSynthieApp, CWinAppEx)
 	ON_COMMAND(ID_APP_ABOUT, &CSynthieApp::OnAppAbout)
 END_MESSAGE_MAP()
 
+//ON_COMMAND(ID_FILE_OPENRECORDING, &CSynthieApp::OnFileOpenrecording)
+
 
 // CSynthieApp construction
 
@@ -172,5 +174,163 @@ void CSynthieApp::SaveCustomState()
 
 // CSynthieApp message handlers
 
+//code from step 3 for playing recording
+/*
+bool CSynthieApp::ProcessBegin()
+{
+	m_wavein.Rewind();
+
+	// 
+	// Waveform storage
+	//
+
+	m_waveformBuffer.Start(NumChannels(), SampleRate());
+
+	if (m_fileoutput)
+	{
+		if (!OpenProcessFile(m_waveout))
+			return false;
+	}
+
+	ProgressBegin(this);
+
+	if (m_audiooutput)
+	{
+		m_soundstream.SetChannels(NumChannels());
+		m_soundstream.SetSampleRate(int(SampleRate()));
+
+		m_soundstream.Open(((CAudioProcessApp*)AfxGetApp())->DirSound());
+	}
+
+	return true;
+}
 
 
+//
+// Name :        CAudioProcessDoc::ProcessReadFrame()
+// Description : Read a frame of input from the current audio file.
+//
+
+void CAudioProcessDoc::ProcessReadFrame(short* p_frame)
+{
+	m_wavein.ReadFrame(p_frame);
+}
+
+
+//
+// Name :        CAudioProcessDoc::ProcessWriteFrame()
+// Description : Write a frame of output to the current generation device.
+//
+
+void CAudioProcessDoc::ProcessWriteFrame(short* p_frame)
+{
+	m_waveformBuffer.Frame(p_frame);
+
+	if (m_fileoutput)
+		m_waveout.WriteFrame(p_frame);
+
+	if (m_audiooutput)
+		m_soundstream.WriteFrame(p_frame);
+}
+
+
+//
+// Name :        CAudioProcessDoc::ProcessEnd()
+// Description : End the generation process.
+//
+
+void CAudioProcessDoc::ProcessEnd()
+{
+	m_waveformBuffer.End();
+
+	if (m_fileoutput)
+		m_waveout.close();
+
+	if (m_audiooutput)
+		m_soundstream.Close();
+
+	ProgressEnd(this);
+
+
+}
+*/
+
+/*
+void CSynthieApp::OnFileOpenrecording()
+{
+	CDirSoundSource audioin;
+
+	if (!audioin.Open("Octave.wav"))
+
+	{
+
+		// Deal with the error
+	}
+
+	int numframes = audioin.NumSampleFrames();
+	m_sample.resize(numframes);
+	//m_sampleL.resize(numframes);
+	//m_sampleR.resize(numframes);
+
+	for (int i = 0; i < numframes; i++)
+	{
+		short audio[2];
+
+		audioin.ReadFrame(audio);
+
+		m_sample[i] = audio[0];
+		//m_sampleL[i] = audio[0];
+		//m_sampleR[i] = audio[0];
+	}
+}*/
+
+	//code for playing the sample
+
+	/*if (!ProcessBegin())
+		return;
+
+	short audio[2];
+
+	for (int i = 0; i < SampleFrames(); i++)
+	{
+		ProcessReadFrame(audio);
+
+		audio[0] = short(audio[0] * m_amplitude);
+		audio[1] = short(audio[1] * m_amplitude);
+
+		ProcessWriteFrame(audio);
+
+		// The progress control
+		if (!ProcessProgress(double(i) / SampleFrames()))
+			break;
+	}
+
+
+	// Call to close the generator output
+	ProcessEnd();
+
+}*/
+
+
+/*void CSynthieApp::OnFileOpenrecording()
+{
+	static WCHAR BASED_CODE szFilter[] = L"Audio Files (*.wav;*.mp3)|*.wav; *.mp3|All Files (*.*)|*.*||";
+
+	CFileDialog dlg(TRUE, NULL, NULL, 0, szFilter, NULL);
+	if (dlg.DoModal() != IDOK)
+		return;
+
+	POSITION position = GetFirstDocTemplatePosition(); //Gets the position of the first document template in the application.
+	//NULL if the list is empty.
+	GetNextDocTemplate(position); //position cannot be null here after GetFirstDocTemplatePosition();
+	CDocTemplate* pTemplate = GetNextDocTemplate(position);
+	pTemplate->OpenDocumentFile(dlg.GetPathName());
+}
+
+CDocument* CSynthieApp::OpenDocumentFile(LPCTSTR lpszFileName)
+{
+	POSITION position = GetFirstDocTemplatePosition();
+	GetNextDocTemplate(position);
+	CDocTemplate* pTemplate = GetNextDocTemplate(position);
+	return pTemplate->OpenDocumentFile(lpszFileName);
+}*/

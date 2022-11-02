@@ -47,6 +47,21 @@ private:
 	void GenerateEnd();
 	bool GenerateBegin();
 
+	//recorded performance code
+	bool ProcessBegin();
+	void ProcessReadFrame(short* p_frame);
+	void ProcessWriteFrame(short* p_frame);
+	void ProcessEnd();
+	bool OpenProcessFile(CWaveOut& p_wave);
+
+	CDirSoundSource   m_wavein;
+	//CWaveOut          m_waveout;
+
+	//For recorded Performance
+	bool m_apply_noise_gating = false;
+
+	vector<short> m_sample;
+
     // Audio destinations..
     CWaveOut        m_wave;
     CDirSoundStream m_soundstream;
@@ -65,5 +80,8 @@ private:
 public:
 	afx_msg void OnGenerateSynthesizer();
 	afx_msg void OnFileOpenscore();
+	afx_msg void OnFileOpenrecording();
+	afx_msg void OnGeneratePlayrecording();
+	afx_msg void OnGenerateApplynoisegate();
 };
 

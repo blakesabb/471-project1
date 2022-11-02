@@ -46,6 +46,8 @@ private:
 	double m_beat;              //!< The current beat within the measure
 	std::list<CInstrument *>  m_instruments;
 	std::vector<CNote> m_notes;
+	//code for playing recorded performance
+	vector<short> m_sample;
 public:
 	void Start();
 	bool Generate(double*);

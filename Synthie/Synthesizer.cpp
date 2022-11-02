@@ -244,6 +244,8 @@ void CSynthesizer::XmlLoadScore(IXMLDOMNode * xml)
 		}
 	}
 }
+
+
 void CSynthesizer::OpenScore(CString & filename)
 {
 	Clear();

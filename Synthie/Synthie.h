@@ -9,6 +9,8 @@
 
 #include "resource.h"       // main symbols
 #include "audio/DirSound.h"	// Added by ClassView
+#include <audio/DirSoundSource.h>
+#include <vector>
 
 
 // CSynthieApp:
@@ -40,6 +42,19 @@ public:
 
 private:
     CDirSound   m_DirSound;
+	//vector<short> m_sampleL;
+	//vector<short> m_sampleR;
+	std::vector<short> m_sample; //variable for recorder perfromance
+	//code from step 3 - for playing recording
+	/*void ProcessEnd();
+	bool ProcessBegin();
+	CDirSoundSource   m_wavein;
+	CWaveOut          m_waveout;
+	CWaveformBuffer m_waveformBuffer;*/
+
+public:
+	//afx_msg void OnFileOpenrecording();
+	//virtual CDocument* OpenDocumentFile(LPCTSTR lpszFileName);
 };
 
 extern CSynthieApp theApp;
