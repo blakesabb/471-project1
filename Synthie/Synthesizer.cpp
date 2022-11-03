@@ -6,6 +6,8 @@
 #include "xmlhelp.h"
 #include <vector>
 #include <algorithm>
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
 
 CSynthesizer::CSynthesizer()
 : m_time(0)
@@ -22,6 +24,7 @@ CSynthesizer::CSynthesizer()
 
 CSynthesizer::~CSynthesizer()
 {
+
 }
 
 //! Start the synthesizer
@@ -74,6 +77,7 @@ bool CSynthesizer::Generate(double * frame)
 		if (instrument != NULL)
 		{
 			instrument->SetSampleRate(GetSampleRate());
+			instrument->SetSecondsPerBeat(m_secperbeat); //add
 			instrument->SetNote(note);
 			instrument->Start();
 
@@ -160,6 +164,9 @@ bool CSynthesizer::Generate(double * frame)
 
 	// We are done when there is nothing to play.  We'll put something more 
 	// complex here later.
+
+	//_CrtDumpMemoryLeaks();
+
 	return !m_instruments.empty() || m_currentNote < (int)m_notes.size();
 }
 

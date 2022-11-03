@@ -16,6 +16,7 @@ CSynthesizerAdd::CSynthesizerAdd(void)
 
 CSynthesizerAdd::~CSynthesizerAdd(void)
 {
+	
 }
 
 void CSynthesizerAdd::Start()
