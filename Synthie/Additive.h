@@ -2,40 +2,41 @@
 #include "Instrument.h"
 #include "audionode.h"
 class CAdditive :
-    public CAudioNode
+	public CAudioNode
 {
-
 public:
-	double m_duration;
-	double frequnecy;
-	double amplitude2;
-	double amplitude;
-	int index;
-	short* audio;
-	double CycleVibrato;
-	double FreqVib;
-
 	CAdditive(void);
 	~CAdditive(void);
-
+public:
+	//! Start audio generation
 	virtual void Start();
 
+	//! Generate one frame of audio
 	virtual bool Generate();
-	
-	void VibratoCycle(double d) { CycleVibrato = d; }
 
-	void VibratoFrequency(double d) { FreqVib = d; }
+	//! Set the sine wave frequency
+	void SetFreq(double f) { m_freq = f; }
 
-	void SetFreq(double f) { frequnecy = f; }
-
-	void SetAmplitude(double a) { amplitude2 = a; }
+	//! Set the sine wave amplitude
+	void SetAmplitude(double& a) { memcpy(&m_amp, &a, sizeof(double) * 8); }
 
 	void SetDuration(double d) { m_duration = d; }
 
+	void SetVibratoRate(double d) { m_vibratoRate = d; }
 
+	void SetVibratoFreq(double d) { m_vibratoFreq = d; }
 
 	void GenerateWaveTable();
 
-
+private:
+	double m_duration;
+	double m_freq;
+	double m_amp[8];
+	double m_amplitude;
+	int index;
+	short* audio;
+	double m_vibratoRate;
+	double m_vibratoFreq;
 };
+
 

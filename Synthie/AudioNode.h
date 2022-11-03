@@ -28,10 +28,15 @@ public:
 	//! Access one channel of a generated audio frame
 	double Frame(int c) { return m_frame[c]; }
 
+	void SetSecondsPerBeat(double spb) { m_spb = spb; } //added
+
+	double GetSecondsPerBeat() { return m_spb; } //added
+
 protected:
 	double m_sampleRate;
 	double m_samplePeriod;
 	double m_bpm;
 	double m_frame[2];
+	double m_spb; // added
 };
 

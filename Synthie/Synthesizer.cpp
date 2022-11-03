@@ -2,6 +2,7 @@
 #include "Synthesizer.h"
 #include "Instrument.h"
 #include "ToneInstrument.h"
+#include "SynthesizerAdd.h"
 #include "xmlhelp.h"
 #include <vector>
 #include <algorithm>
@@ -26,13 +27,7 @@ CSynthesizer::~CSynthesizer()
 //! Start the synthesizer
 void CSynthesizer::Start()
 {
-	/*m_time = 0;
-	CToneInstrument *ti = new CToneInstrument();
-	ti->SetSampleRate(GetSampleRate());
-	ti->SetFreq(440);
-	ti->SetDuration(3);
-	ti->Start();
-	m_instruments.push_back(ti);*/
+
 	m_instruments.clear();
 	m_currentNote = 0;
 	m_measure = 0;
@@ -59,32 +54,23 @@ bool CSynthesizer::Generate(double * frame)
 
 	while (m_currentNote < (int)m_notes.size())
 	{
-		// Get a pointer to the current note
 		CNote *note = &m_notes[m_currentNote];
 
-		// If the measure is in the future we can't play
-		// this note just yet.
 		if (note->Measure() > m_measure)
 			break;
 
-		// If this is the current measure, but the
-		// beat has not been reached, we can't play
-		// this note.
+
 		if (note->Measure() == m_measure && note->Beat() > m_beat)
 			break;
 
-		//
-		// Play the note!
-		//
 
-		// Create the instrument object
+
 		CInstrument *instrument = NULL;
-		if (note->Instrument() == L"ToneInstrument")
+		if (note->Instrument() == L"AdditiveSynth") // get synth instrument
 		{
-			instrument = new CToneInstrument(GetBeatsPerMinute());
+			instrument = new CSynthesizerAdd(); // make it new
 		}
 
-		// Configure the instrument object
 		if (instrument != NULL)
 		{
 			instrument->SetSampleRate(GetSampleRate());

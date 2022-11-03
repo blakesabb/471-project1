@@ -7,12 +7,10 @@
 
 CSynthesizerAdd::CSynthesizerAdd(void)
 {
-	CrossIn = 0.0;
-	CrossOut = 0.0;
-	attack = 0;
-	release = 0;
-	decay = 0;
-	sustain = 1.0;
+	m_crossFadeIn = 0.0;
+	m_crossFadeOut = 0.0;
+	m_attack = m_release = m_decay = 0;
+	m_sustain = 1.0;
 }
 
 
@@ -31,27 +29,40 @@ void CSynthesizerAdd::Start()
 
 bool CSynthesizerAdd::Generate()
 {
+	// Tell the component to generate an audio sample
 	m_sinewave.Generate();
+
+	// Read the component's sample and make it our resulting frame.
 
 
 	m_frame[0] = m_sinewave.Frame(0);
 	m_frame[1] = m_sinewave.Frame(1);
+
+	//ATTACK AND RELEASE IMPLEMENATION
+	/*double factor = 1.0;
+	if(m_time < m_attack && m_time > (m_duration  - m_release))
+		factor = m_time*1./m_attack < m_time*-1./m_release + (1./m_release)*(m_duration) ? m_time*-1./m_release + (1./m_release)*(m_duration) : m_time*1./m_attack;
+	else if(m_time < m_attack)
+		factor = m_time*1./m_attack;
+	else if(m_time > (m_duration  - m_release))
+		factor = m_time*-1./m_release + (1./m_release)*(m_duration);
+*/
 	double factor = 1.0;
 	double sign = -1.0;
-	if (sustain > 1.0) sign = 1.0;
+	if (m_sustain > 1.0) sign = 1.0;
 
-	if (m_time < attack) {
-		factor = m_time * 1. / attack;
+	if (m_time < m_attack) {
+		factor = m_time * 1. / m_attack;
 	}
-	else if (m_time < decay) {
-		factor = sign * ((1.0 - sustain) / (decay - attack)) * (m_time)+(1.0 - sign * ((1.0 - sustain) / (decay - attack)) * (attack));
+	else if (m_time < m_decay) {
+		factor = sign * ((1.0 - m_sustain) / (m_decay - m_attack)) * (m_time)+(1.0 - sign * ((1.0 - m_sustain) / (m_decay - m_attack)) * (m_attack));
 	}
-	else if (m_time > (m_duration - release) && release != 0) {
-		if (sustain <= 0) sustain = 1.0;
-		factor = m_time * -sustain / release + (sustain / release) * (m_duration);
+	else if (m_time > (m_duration - m_release) && m_release != 0) {
+		if (m_sustain <= 0) m_sustain = 1.0;
+		factor = m_time * -m_sustain / m_release + (m_sustain / m_release) * (m_duration);
 	}
 	else {
-		factor = sustain;
+		factor = m_sustain;
 	}
 
 	m_frame[0] = m_frame[1] *= factor;
@@ -65,20 +76,29 @@ bool CSynthesizerAdd::Generate()
 
 void CSynthesizerAdd::SetNote(CNote* note)
 {
-
+	// Get a list of all attribute nodes and the
+	// length of that list
 	CComPtr<IXMLDOMNamedNodeMap> attributes;
 	note->Node()->get_attributes(&attributes);
 	long len;
 	attributes->get_length(&len);
 
+	// Loop over the list of attributes
 	for (int i = 0; i < len; i++)
 	{
+		// Get attribute i
 		CComPtr<IXMLDOMNode> attrib;
 		attributes->get_item(i, &attrib);
 
+		// Get the name of the attribute
 		CComBSTR name;
 		attrib->get_nodeName(&name);
 
+		// Get the value of the attribute.  A CComVariant is a variable
+		// that can have any type. It loads the attribute value as a
+		// string (UNICODE), but we can then change it to an integer 
+		// (VT_I4) or double (VT_R8) using the ChangeType function 
+		// and then read its integer or double value from a member variable.
 		CComVariant value;
 		attrib->get_nodeValue(&value);
 
@@ -126,16 +146,16 @@ void CSynthesizerAdd::SetNote(CNote* note)
 			std::string item;
 
 			std::getline(ss, item, char(32));
-			attack = atof(item.c_str()) * m_duration;
+			m_attack = atof(item.c_str()) * m_duration;
 
 			std::getline(ss, item, char(32));
-			decay = attack + atof(item.c_str()) * m_duration;
+			m_decay = m_attack + atof(item.c_str()) * m_duration;
 
 			std::getline(ss, item, char(32));
-			sustain = atof(item.c_str());
+			m_sustain = atof(item.c_str());
 
 			std::getline(ss, item, char(32));
-			release = atof(item.c_str()) * m_duration;
+			m_release = atof(item.c_str()) * m_duration;
 		}
 		else if (name == "vibrato") {
 			std::wstring wide(value.bstrVal);
@@ -145,10 +165,10 @@ void CSynthesizerAdd::SetNote(CNote* note)
 			std::string item;
 
 			std::getline(ss, item, char(32));
-			m_sinewave.VibratoCycle(atof(item.c_str()));
+			m_sinewave.SetVibratoRate(atof(item.c_str()));
 
 			std::getline(ss, item, char(32));
-			m_sinewave.VibratoFrequency(atof(item.c_str()));
+			m_sinewave.SetVibratoFreq(atof(item.c_str()));
 		}
 
 	}
