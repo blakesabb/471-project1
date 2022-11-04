@@ -10,26 +10,42 @@ public:
 	CSynthesizerAdd(void);
 	virtual ~CSynthesizerAdd(void);
 public:
-	virtual void Start();
-	virtual bool Generate();
+	CAdditive   sinewave;
+	double duration;
+	double time;
+	double release;
+	double attack;
+	double CrossIn;
+	double CrossOut;
+	double sustain;
+	double decay;
 
-	void SetFreq(double f) { m_sinewave.SetFreq(f); }
-	void SetAmplitude(double& a) { m_sinewave.SetAmplitude(a); }
-	void SetDuration(double d) { m_duration = d * GetSecondsPerBeat(); }
-	void SetCrossFadeIn(double d) { m_attack = d * GetSecondsPerBeat(); }
-	void SetCrossFadeOut(double d) { m_release = d * GetSecondsPerBeat(); }
-	virtual void SetNote(CNote* note);
+	virtual void Start(); //given in steps 
+	virtual bool Generate(); //given  in steps 
+	virtual void SetNote(CNote* note); //given in steps 
+	
+	
+	void SetCrossFadeIn(double ci)
 
-private:
-	CAdditive   m_sinewave;
-	double m_duration;
-	double m_time;
-	double m_release;
-	double m_attack;
-	double m_crossFadeIn;
-	double m_crossFadeOut;
-	double m_sustain;
-	double m_decay;
+	{
+		attack = GetSecondsPerBeat() * ci; //attakc is the corss in times SPB
+	}
+
+	void SetCrossFadeOut(double co)
+	{
+		release = GetSecondsPerBeat() * co; //release is the cross out times SPB
+	}
+	 
+	void SetDuration(double d) 
+	{ 
+		duration = d * GetSecondsPerBeat(); // we want full duration for wavetable
+	
+	}
+	void SetFreq(double f) { sinewave.SetFreq(f); } //given in steps 
+	void SetAmplitude(double& a) { sinewave.SetAmplitude(a); }	 //given in steps 
+	
+
+
 
 };
 

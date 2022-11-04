@@ -7,10 +7,19 @@
 
 CSynthesizerAdd::CSynthesizerAdd(void)
 {
-	m_crossFadeIn = 0.0;
-	m_crossFadeOut = 0.0;
-	m_attack = m_release = m_decay = 0;
-	m_sustain = 1.0;
+	// set values 
+	attack = 0;
+
+	decay = 0;
+
+	sustain = 1.0;
+
+	release = 0;
+
+	CrossIn = 0;
+
+	CrossOut = 0;
+
 }
 
 
@@ -21,64 +30,73 @@ CSynthesizerAdd::~CSynthesizerAdd(void)
 
 void CSynthesizerAdd::Start()
 {
-	m_sinewave.SetSampleRate(GetSampleRate());
-	m_sinewave.SetDuration(m_duration);
-	m_sinewave.Start();
-	m_time = 0;
+	sinewave.SetDuration(duration); // set duration
+
+	sinewave.SetSampleRate(GetSampleRate()); //set sample rate
+
+	sinewave.Start(); // start
+
+	time = 0; // init time
 }
+
 
 
 bool CSynthesizerAdd::Generate()
 {
-	// Tell the component to generate an audio sample
-	m_sinewave.Generate();
+	sinewave.Generate(); // generate
 
-	// Read the component's sample and make it our resulting frame.
+	m_frame[0] = sinewave.Frame(0); // set frame 0
 
+	m_frame[1] = sinewave.Frame(1); // set frame 1
 
-	m_frame[0] = m_sinewave.Frame(0);
-	m_frame[1] = m_sinewave.Frame(1);
+	double mutliplier = 0; // start mult
 
-	//ATTACK AND RELEASE IMPLEMENATION
-	/*double factor = 1.0;
-	if(m_time < m_attack && m_time > (m_duration  - m_release))
-		factor = m_time*1./m_attack < m_time*-1./m_release + (1./m_release)*(m_duration) ? m_time*-1./m_release + (1./m_release)*(m_duration) : m_time*1./m_attack;
-	else if(m_time < m_attack)
-		factor = m_time*1./m_attack;
-	else if(m_time > (m_duration  - m_release))
-		factor = m_time*-1./m_release + (1./m_release)*(m_duration);
-*/
-	double factor = 1.0;
-	double sign = -1.0;
-	if (m_sustain > 1.0) sign = 1.0;
+	double constant = 0; // start neg constant 
+	
 
-	if (m_time < m_attack) {
-		factor = m_time * 1. / m_attack;
+	if (sustain > 1.5)  // if susatin is less than 1.5 make the constant 1
+	{
+		constant = 1;
 	}
-	else if (m_time < m_decay) {
-		factor = sign * ((1.0 - m_sustain) / (m_decay - m_attack)) * (m_time)+(1.0 - sign * ((1.0 - m_sustain) / (m_decay - m_attack)) * (m_attack));
+		
+
+	if (time < attack) // if time less than attack
+	{
+		mutliplier = time / attack; // multiplyer is  time / attack
 	}
-	else if (m_time > (m_duration - m_release) && m_release != 0) {
-		if (m_sustain <= 0) m_sustain = 1.0;
-		factor = m_time * -m_sustain / m_release + (m_sustain / m_release) * (m_duration);
-	}
-	else {
-		factor = m_sustain;
+	
+	else if (time < decay) // if time is less than decay
+	{
+		mutliplier = constant * ((1 - sustain) / (decay - attack)) * (time) +  (1 - constant * ((1 - sustain) / (decay - attack)) * (attack)); // use decay equation we are given
 	}
 
-	m_frame[0] = m_frame[1] *= factor;
+	else if (time > (duration - release) && release != 0) // make sure release is not 0, then subtract duration by time. If this is the case 
+	{
+		if (sustain <= 0) // mkae sure statin is not negative or zero (that does not mkae much sense)
+		{
+			sustain = 1; // set sustain
+		}
+		
+		mutliplier = time * - sustain / release + (sustain/release)*(duration); // set the new multilyer 
+	}
+	
+	else 
+	{
+		mutliplier = sustain; // if none of that is ture set the new multiplyer by sustain
+	}
 
-	// Update time
-	m_time += GetSamplePeriod();
+	m_frame[0] = mutliplier * m_frame[0]; // set frame 0 by multiplyer by multiplying (get it) to the current frame 0
+	
+	m_frame[1] =  mutliplier * m_frame[1]; // set frame 1 by multiplyer by multiplying (get it) to the current frame 1
 
-	// We return true until the time reaches the duration.
-	return m_time < m_duration;
+	time = time +  GetSamplePeriod(); // set new nime by the sample period
+
+	return time < duration; // we only need time less than duration
 }
+
 
 void CSynthesizerAdd::SetNote(CNote* note)
 {
-	// Get a list of all attribute nodes and the
-	// length of that list
 	CComPtr<IXMLDOMNamedNodeMap> attributes;
 	note->Node()->get_attributes(&attributes);
 	long len;
@@ -95,82 +113,131 @@ void CSynthesizerAdd::SetNote(CNote* note)
 		CComBSTR name;
 		attrib->get_nodeName(&name);
 
-		// Get the value of the attribute.  A CComVariant is a variable
-		// that can have any type. It loads the attribute value as a
-		// string (UNICODE), but we can then change it to an integer 
-		// (VT_I4) or double (VT_R8) using the ChangeType function 
-		// and then read its integer or double value from a member variable.
+
 		CComVariant value;
 		attrib->get_nodeValue(&value);
 
 		if (name == "duration")
 		{
+			
 			value.ChangeType(VT_R8);
+			
 			SetDuration(value.dblVal);
+		
 		}
 		else if (name == "note")
 		{
 			SetFreq(NoteToFrequency(value.bstrVal));
 		}
-		else if (name == "amplitudes")
+		
+		 //ALL BASED OFF OF STEP 5
+		else if (name == "amplitudes") // meed nultiple amplitudes for vibrato 
 		{
+			double sound[8] = { 0 }; //agrragte the sound to 0
+			
+			
+			// set stings
+			// -------------
 			std::wstring wide(value.bstrVal);
+			
 			std::string str(wide.begin(), wide.end());
-
+			
 			std::stringstream ss(str);
+			
 			std::string item;
+			// ---------------
 
-			double harmonics[8] = { 0 };
-
-			int i = 0;
-			while (std::getline(ss, item, char(32))) {
-				harmonics[i++] = atof(item.c_str());
+			int place = 0;
+			
+			while (std::getline(ss, item, char(32))) 
+			{
+				sound[place++] = atof(item.c_str());
 			}
 
-			SetAmplitude(harmonics[0]);
+			SetAmplitude(sound[0]);
 		}
-		else if (name == "crossFadeIn")
+		
+		
+		
+		else if (name == "vibrato")
 		{
-			value.ChangeType(VT_R8);
-			SetCrossFadeIn(value.dblVal * m_duration);
+
+			// defined in Additive.cpp
+
+			// set stings
+			// -------------
+			std::wstring wide(value.bstrVal);
+
+			std::string str(wide.begin(), wide.end());
+
+			std::stringstream ss(str);
+
+			std::string item;
+			// -------------
+
+			
+			
+			std::getline(ss, item, char(32)); // get lines
+
+			sinewave.CycleVibrato(atof(item.c_str())); // set rate
+
+			std::getline(ss, item, char(32)); // get lines
+
+			sinewave.FrequencyVibrato(atof(item.c_str())); // set freqwency
 		}
-		else if (name == "crossFadeOut")
-		{
-			value.ChangeType(VT_R8);
-			SetCrossFadeOut(value.dblVal * m_duration);
-		}
+		
+
 		else if (name == "ADSR") {
+			// set stings
+			// -------------
 			std::wstring wide(value.bstrVal);
+			
 			std::string str(wide.begin(), wide.end());
 
 			std::stringstream ss(str);
+			
 			std::string item;
+			// ---------------
 
-			std::getline(ss, item, char(32));
-			m_attack = atof(item.c_str()) * m_duration;
 
+			// regular
 			std::getline(ss, item, char(32));
-			m_decay = m_attack + atof(item.c_str()) * m_duration;
+			
+			attack = atof(item.c_str()) * duration;
 
+			
+			// decay
 			std::getline(ss, item, char(32));
-			m_sustain = atof(item.c_str());
+			
+			decay = attack + atof(item.c_str()) * duration;
 
+			
+			// sustain
 			std::getline(ss, item, char(32));
-			m_release = atof(item.c_str()) * m_duration;
+			
+			sustain = atof(item.c_str());
+
+
+			// release
+			std::getline(ss, item, char(32));
+			
+			release = atof(item.c_str()) * duration;
 		}
-		else if (name == "vibrato") {
-			std::wstring wide(value.bstrVal);
-			std::string str(wide.begin(), wide.end());
+		
+		else if (name == "Fadein") // cross fade in 
+		{
+			value.ChangeType(VT_R8); // change type 
 
-			std::stringstream ss(str);
-			std::string item;
-
-			std::getline(ss, item, char(32));
-			m_sinewave.SetVibratoRate(atof(item.c_str()));
-
-			std::getline(ss, item, char(32));
-			m_sinewave.SetVibratoFreq(atof(item.c_str()));
+			SetCrossFadeIn(value.dblVal * duration); // vade in on vaule by duration
 		}
+		
+		else if (name == "Fadeout") // cross out
+		{
+			value.ChangeType(VT_R8); // change type 
+
+			SetCrossFadeOut(value.dblVal * duration); // fade out on value by duration
+		}
+		
 
 	}
 
