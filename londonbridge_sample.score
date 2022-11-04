@@ -17,7 +17,7 @@
           <note measure="4" beat="1" duration="1" note="F4"/>
 
           <note measure="4" beat="1" duration="1" note="G4"/>
- 	     <note measure="5" beat="1" duration="6" note="G4" dynamic = "0.5"/>
+          <note measure="5" beat="1" duration="6" note="G4" dynamic = "0.5"/>
           <note measure="5" beat="1" duration="1" note="A4"/>
           <note measure="5" beat="1" duration="1" note="G4"/>
 
