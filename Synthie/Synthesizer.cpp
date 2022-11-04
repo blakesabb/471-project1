@@ -2,6 +2,7 @@
 #include "Synthesizer.h"
 #include "Instrument.h"
 #include "ToneInstrument.h"
+#include "PianoInstrument.h"
 #include "SynthesizerAdd.h"
 #include "xmlhelp.h"
 #include <vector>
@@ -77,7 +78,12 @@ bool CSynthesizer::Generate(double * frame)
 		{
 			instrument = new CWaveTable(GetBeatsPerMinute());
 		}
-
+		if (note->Instrument() == L"PianoInstrument")
+		{
+			instrument = m_pianosynthesize.CreateInstrument();
+			m_pianosynthesize.SetNote(note);
+		}
+		// Configure the instrument object
 		if (instrument != NULL)
 		{
 			instrument->SetSampleRate(GetSampleRate());

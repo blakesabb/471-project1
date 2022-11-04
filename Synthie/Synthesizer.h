@@ -4,6 +4,7 @@ using namespace std;
 #include <vector>
 #include "msxml2.h"
 #include "Instrument.h"
+#include "PianoInstrumentSynth.h"
 #include "Note.h"
 #include <CWaveTable.h>
 
@@ -47,6 +48,7 @@ private:
 	int m_measure;              //!< The current measure
 	double m_beat;              //!< The current beat within the measure
 	std::list<CInstrument *>  m_instruments;
+	CPianoInstrumentSynth m_pianosynthesize;
 	std::vector<CNote> m_notes;
 public:
 	void Start();

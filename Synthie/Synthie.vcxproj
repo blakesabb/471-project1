@@ -137,6 +137,10 @@
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Note.cpp" />
     <ClCompile Include="Notes.cpp" />
+    <ClCompile Include="PianoEnvelopes.cpp" />
+    <ClCompile Include="PianoInstrument.cpp" />
+    <ClCompile Include="PianoInstrumentSynth.cpp" />
+    <ClCompile Include="PianoSampWave.cpp" />
     <ClCompile Include="Progress.cpp" />
     <ClCompile Include="ProgressDlg.cpp" />
     <ClCompile Include="SineWave.cpp" />
@@ -165,6 +169,10 @@
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Note.h" />
     <ClInclude Include="Notes.h" />
+    <ClInclude Include="PianoEnvelopes.h" />
+    <ClInclude Include="PianoInstrument.h" />
+    <ClInclude Include="PianoInstrumentSynth.h" />
+    <ClInclude Include="PianoSampWave.h" />
     <ClInclude Include="Progress.h" />
     <ClInclude Include="ProgressDlg.h" />
     <ClInclude Include="Resource.h" />
