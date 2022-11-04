@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <score bpm="120" beatspermeasure="2">
      <instrument instrument="PianoInstrument">
-          <note measure="1" beat="0.65" duration="0.75" note="G4" dynamic = "0.5"/>
-          <note measure="1" beat="1" duration="0.35" note="A4"/>
-          <note measure="1" beat="1.5" duration="0.5" note="G4"/>
-          <note measure="1" beat="2" duration="0.5" note="F4"/>
+          <note measure="1" beat="1" duration="6" note="G4" dynamic = "0.5"/>
+          <note measure="1" beat="1" duration="1" note="A4"/>
+          <note measure="1" beat="1" duration="1" note="G4"/>
+          <note measure="1" beat="1" duration="1" note="F4"/>
 
-          <note measure="2" beat="0.5" duration="0.5" note="E4" dynamic = "0.75"/>
-          <note measure="2" beat="1" duration="0.5" note="F4"/>
-          <note measure="2" beat="2" duration="0.5" note="G4"/>
-          <note measure="3" beat="0.5" duration="0.5" note="D4" pedal = "press" />
+          <note measure="2" beat="1" duration="6" note="E4" dynamic = "0.75"/>
+          <note measure="2" beat="1" duration="1" note="F4"/>
+          <note measure="2" beat="1" duration="1" note="G4"/>
+          <note measure="3" beat="1" duration="3" note="D4" pedal = "press" />
 
-          <note measure="3" beat="1" duration="0.5" note="E4"/>
-          <note measure="3" beat="2" duration="0.5" note="F4" pedal = "release" />
-          <note measure="4" beat="0.5" duration="0.5" note="E4"/>
-          <note measure="4" beat="1" duration="0.5" note="F4"/>
+          <note measure="3" beat="1" duration="1" note="E4"/>
+          <note measure="3" beat="1" duration="3" note="F4" pedal = "release" />
+          <note measure="4" beat="1" duration="1" note="E4"/>
+          <note measure="4" beat="1" duration="1" note="F4"/>
 
-          <note measure="4" beat="2" duration="0.5" note="G4"/>
- 	    <note measure="5" beat="0.65" duration="0.75" note="G4" dynamic = "0.5"/>
-          <note measure="5" beat="1" duration="0.35" note="A4"/>
-          <note measure="5" beat="1.5" duration="0.5" note="G4"/>
+          <note measure="4" beat="1" duration="1" note="G4"/>
+ 	     <note measure="5" beat="1" duration="6" note="G4" dynamic = "0.5"/>
+          <note measure="5" beat="1" duration="1" note="A4"/>
+          <note measure="5" beat="1" duration="1" note="G4"/>
 
-          <note measure="5" beat="2" duration="0.5" note="F4"/>
-          <note measure="6" beat="0.5" duration="0.75" note="E4" dynamic = "0.75"/>
-          <note measure="6" beat="1" duration="0.35" note="F4"/>
-          <note measure="6" beat="2" duration="0.5" note="G4"/>
+          <note measure="5" beat="1" duration="1" note="F4"/>
+          <note measure="6" beat="1" duration="6" note="E4" dynamic = "0.75"/>
+          <note measure="6" beat="1" duration="1" note="F4"/>
+          <note measure="6" beat="1" duration="1" note="G4"/>
 
           <note measure="7" beat="1" duration="1" note="D4"/>
-          <note measure="7" beat="2" duration="1" note="G4"/>
+          <note measure="7" beat="1" duration="1" note="G4"/>
           <note measure="8" beat="1" duration="1" note="E4"/>
-          <note measure="8" beat="2" duration="1" note="C4"/>
+          <note measure="8" beat="1" duration="1" note="C4"/>
 
           
      </instrument>
