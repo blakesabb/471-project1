@@ -38,3 +38,15 @@ const Notes notes[] = {{TEXT("A0"), 27.5}, {TEXT("A#0"), 29.1352}, {TEXT("Bb0"),
 {TEXT("A7"), 3520.0}, {TEXT("A#7"), 3729.31}, {TEXT("Bb7"), 3729.31}, {TEXT("B7"), 3951.07}, {TEXT("C8"), 4186.01}};
 
 double NoteToFrequency(const WCHAR *name);
+
+struct WT
+{
+	const TCHAR* name;
+	double freq;
+};
+
+const WT wt[] = { {TEXT("DO"), 523.251},  {TEXT("RE"), 587.33},  {TEXT("MI"), 659.255},  {TEXT("FA"), 698.456},  {TEXT("SOL"), 783.991},  {TEXT("LA"), 880.0},  {TEXT("TI"), 987.767},
+
+};
+
+double wtToFrequency(const WCHAR* name);

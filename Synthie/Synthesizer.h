@@ -5,6 +5,8 @@ using namespace std;
 #include "msxml2.h"
 #include "Instrument.h"
 #include "Note.h"
+#include <CWaveTable.h>
+
 class CSynthesizer
 {
 public:

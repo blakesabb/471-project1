@@ -26,3 +26,22 @@ double NoteToFrequency(const WCHAR *name)
 
     return f->second;
 }
+
+double wtToFrequency(const WCHAR* name)
+{
+    if (!g_initialized)
+    {
+        for (int i = 0; i < sizeof(wt) / sizeof(Notes); i++)
+        {
+            g_name2freq[wt[i].name] = wt[i].freq;
+        }
+
+        g_initialized = true;
+    }
+
+    map<wstring, double>::iterator f = g_name2freq.find(name);
+    if (f == g_name2freq.end())
+        return 0;
+
+    return f->second;
+}

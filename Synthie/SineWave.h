@@ -19,6 +19,10 @@ public:
 	//! Set the sine wave amplitude
 	void SetAmplitude(double a) { m_amp = a; }
 
+	// Get the frequency
+	double GetFreq() { return m_freq; }
+
+
 private:
 	double m_freq;
 	double m_amp;

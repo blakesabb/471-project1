@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<score bpm="60" beatspermeasure="1">
+   <instrument instrument="WaveTable">
+      	<note measure="1" beat="1" duration="0.5" note="MI"/>
+	<note measure="1" beat="1.5" duration="0.5" note="RE"/>
+	<note measure="2" beat="1" duration="0.5" note="DO"/>
+	<note measure="2" beat="1.5" duration="0.5" note="RE"/>	
+ 	
+	<note measure="3" beat="1" duration="0.5" note="MI" A = "0.05" D = "0.2" S = "0.4" R = "0.05"/>
+	<note measure="3" beat="1.5" duration="0.5" note="MI" A = "0.05" D = "0.2" S = "0.4" R = "0.05"/>
+	<note measure="4" beat="1" duration="0.5" note="MI"/>
+
+	<note measure="5" beat="1" duration="0.1" note="RE" Attack = "0.01"/>
+	<note measure="5" beat="1" duration="0.5" note="RE" Sustain = "0.1"/>
+	<note measure="5" beat="1.5" duration="0.1" note="RE" Attack = "0.01"/>
+	<note measure="5" beat="1.5" duration="0.5" note="RE" Sustain = "0.1"/>
+	<note measure="6" beat="1" duration="0.1" note="RE" Attack = "0.01"/>
+	<note measure="6" beat="1" duration="0.5" note="RE" Sustain = "0.1"/>
+
+	<note measure="7" beat="1" duration="0.5" note="MI" Pitch = "2"/>
+	<note measure="7" beat="1.5" duration="0.5" note="SOL" Pitch = "2"/>
+	<note measure="8" beat="1" duration="0.5" note="SOL" Pitch = "2"/>
+
+	<note measure="9" beat="1" duration="0.1" note="MI" Attack = "0.01"/>
+	<note measure="9" beat="1.5" duration="0.1" note="RE" Attack = "0.01"/>
+	<note measure="10" beat="1" duration="0.1" note="DO" Attack = "0.01"/>
+	<note measure="10" beat="1.5" duration="0.1" note="RE" Attack = "0.01"/>
+
+	<note measure="11" beat="1" duration="0.1" note="MI" Attack = "0.01"/>
+	<note measure="11" beat="1.5" duration="0.1" note="MI" Attack = "0.01"/>
+	<note measure="12" beat="1" duration="0.1" note="MI" Attack = "0.01"/>
+	<note measure="12" beat="1.5" duration="0.1" note="MI" Attack = "0.01"/>
+
+	<note measure="13" beat="1" duration="0.7" note="RE" CrossFadeOut = "0.2"/>
+	<note measure="13" beat="1.5" duration="0.7" note="RE" CrossFadeIn = "0.2"/>
+	<note measure="14" beat="1" duration="0.6" note="MI" CrossFadeOut = "0.2"/>
+	<note measure="14" beat="1.5" duration="0.7" note="RE" CrossFadeIn = "0.2"/>
+	<note measure="15" beat="1" duration="0.7" note="DO" Attack = "0.01"/>
+
+   </instrument>
+</score>

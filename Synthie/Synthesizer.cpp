@@ -73,6 +73,10 @@ bool CSynthesizer::Generate(double * frame)
 		{
 			instrument = new CSynthesizerAdd(); // make it new
 		}
+		else if (note->Instrument() == L"WaveTable")
+		{
+			instrument = new CWaveTable(GetBeatsPerMinute());
+		}
 
 		if (instrument != NULL)
 		{
