@@ -8,7 +8,16 @@ CAdditive::CAdditive(void)
 {
 	// set vals
 	// --------------------
-	amplitude = 10;
+	amplitude2[0] = 1; // first value as non zero
+
+	for (int i = 1; i < 8; i++) // initalize size of the second amplitide at 0 for the size 
+	{
+		
+		amplitude2[i] = 0;
+
+	}	
+
+	amplitude = 500;
 
 	FreqVibrato = 0;
 
@@ -41,7 +50,7 @@ void CAdditive::Start()
 
 bool CAdditive::Generate()
 {
-	double loc_new = loc + 1; // get new loc at the nect loication 
+	//double loc_new = loc + 1; // get new loc at the nect loication 
 
 	m_frame[0] = audio[loc++]; // set audio serio at the location over from the current (new) location
 
@@ -60,7 +69,7 @@ void CAdditive::FrequencyVibrato(double fv)
 	FreqVibrato = fv;
 }
 
-short catchOverflow(double d)
+short Overflow(double d)
 {
 
 	// get the overflow inclase. Using 3000 as the overflow value. 
@@ -96,9 +105,11 @@ void CAdditive::GenerateWaveTable()
 
 		double val = 0; // set sample
 
-		for (auto n = 1; n * freq <= 22050 && n < 9; n++) // less the frequency
+		for (auto j = 1; j * freq <= 22000 && j < 9; j++) // less the frequency
 		{
-			val = val + (amplitude * (sin(n * sinangle))); // as long as the frequency is get add up the sample vlaue
+			int sec_amp_loc = int(j - 1);
+			
+			val = val + (amplitude * amplitude2[sec_amp_loc] * (sin(j * sinangle))); // as long as the frequency is get add up the sample vlaue
 
 		}
 
@@ -108,6 +119,6 @@ void CAdditive::GenerateWaveTable()
 
 
 
-		audio[i] = catchOverflow(val); // grab the overflow
+		audio[i] = Overflow(val); // grab the overflow
 	}
 }

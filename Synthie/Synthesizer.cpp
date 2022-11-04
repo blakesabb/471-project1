@@ -69,7 +69,7 @@ bool CSynthesizer::Generate(double * frame)
 
 
 		CInstrument *instrument = NULL;
-		if (note->Instrument() == L"AdditiveSynth") // get synth instrument
+		if (note->Instrument() == L"Additive") // get synth instrument
 		{
 			instrument = new CSynthesizerAdd(); // make it new
 		}
