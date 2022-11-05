@@ -123,6 +123,7 @@ BEGIN
     BEGIN
         MENUITEM "Open Score",                  ID_FILE_OPENSCORE
         MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "&Open Recording",             ID_FILE_OPENRECORDING
     END
     POPUP "&Generate"
     BEGIN
@@ -131,6 +132,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&1000Hz Tone",                ID_GENERATE_1000HZTONE
         MENUITEM "Synthesizer",                 ID_GENERATE_SYNTHESIZER
+        MENUITEM "&Play Recording",             ID_GENERATE_PLAYRECORDING
     END
     POPUP "&Edit"
     BEGIN

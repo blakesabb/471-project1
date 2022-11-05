@@ -54,6 +54,19 @@ private:
 
 	int NumChannels() {return 2;}
 	double SampleRate() {return 44100;}
+
+	//recorded performance code
+	bool ProcessBegin();
+	void ProcessReadFrame(short* p_frame);
+	void ProcessWriteFrame(short* p_frame);
+	void ProcessEnd();
+	bool OpenProcessFile(CWaveOut& p_wave);
+	CDirSoundSource   m_wavein;
+	//CWaveOut          m_waveout;
+	bool m_apply_noise_gating = false;
+	bool m_apply_dynamic_range_compression = false;
+	vector<short> m_sample;
+
 public:
 	afx_msg void OnGenerateFileoutput();
 	afx_msg void OnUpdateGenerateFileoutput(CCmdUI *pCmdUI);
@@ -65,5 +78,8 @@ private:
 public:
 	afx_msg void OnGenerateSynthesizer();
 	afx_msg void OnFileOpenscore();
+	//for recorded perfromance
+	afx_msg void OnFileOpenrecording();
+	afx_msg void OnGeneratePlayrecording();
 };
 
