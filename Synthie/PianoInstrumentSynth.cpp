@@ -10,9 +10,9 @@ CPianoInstrumentSynth::CPianoInstrumentSynth(void)
 
 	//debugging code
 	//LoadLoudPiano("MiddleC");
-	PianoLoad("MiddleC", m_loudwave);
+	//PianoLoad("MiddleC", m_loudwave);
 	//LoadSoftPiano("MiddleCSoft");
-	PianoLoad("MiddleCSoft", m_softwave);
+	//PianoLoad("MiddleCSoft", m_softwave);
 	//PedalPress("PianoPedalPress");
 	//PedalRelease("PianoPedalRelease");
 }
