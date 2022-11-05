@@ -7,6 +7,14 @@ CPianoInstrumentSynth::CPianoInstrumentSynth(void)
 {
 	m_sustain = false;
 	m_dynam = 0.34;
+
+	//debugging code
+	//LoadLoudPiano("MiddleC");
+	PianoLoad("MiddleC", m_loudwave);
+	//LoadSoftPiano("MiddleCSoft");
+	PianoLoad("MiddleCSoft", m_softwave);
+	//PedalPress("PianoPedalPress");
+	//PedalRelease("PianoPedalRelease");
 }
 
 CPianoInstrumentSynth::~CPianoInstrumentSynth(void)
@@ -67,6 +75,31 @@ bool CPianoInstrumentSynth::LoadLoudPiano(const char* pianofile)
 	}
 	// step 4 stop
 	m_file.Close();
+	return true;
+}
+
+bool CPianoInstrumentSynth::PianoLoad(const char* pianofile, std::vector<short>& table)
+{
+	table.clear();
+	CDirSoundSource audioin;
+	
+	if (!audioin.Open(pianofile)) {
+		CString err = L"Read file error";
+		err += pianofile;
+		AfxMessageBox(err);
+		return false;
+	}
+	int numframes = audioin.NumSampleFrames();
+	table.resize(numframes);
+
+	for (int f = 0; f < numframes; f++) {
+		short frame[2];
+		audioin.ReadFrame(frame);
+		//table.push_back(frame[0]);
+		table[f] = frame[0];
+	}
+	// step 4 stop
+	audioin.Close();
 	return true;
 }
 

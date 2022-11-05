@@ -18,6 +18,8 @@ public:
 	bool PedalPress(const char*);
 	bool PedalRelease(const char*);
 
+	bool PianoLoad(const char* pianofile, std::vector<short>& table);
+
 private:
 	double m_dynam;
 	bool m_sustain;
