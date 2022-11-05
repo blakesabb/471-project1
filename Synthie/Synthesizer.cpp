@@ -70,11 +70,15 @@ bool CSynthesizer::Generate(double * frame)
 
 
 		CInstrument *instrument = NULL;
+		if (note->Instrument() == L"ToneInstrument")
+		{
+			instrument = new CToneInstrument(GetBeatsPerMinute());
+		}
 		if (note->Instrument() == L"Additive") // get synth instrument
 		{
 			instrument = new CSynthesizerAdd(); // make it new
 		}
-		else if (note->Instrument() == L"WaveTable")
+		if (note->Instrument() == L"WaveTable")
 		{
 			instrument = new CWaveTable(GetBeatsPerMinute());
 		}
