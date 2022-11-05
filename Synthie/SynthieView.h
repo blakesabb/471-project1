@@ -81,5 +81,7 @@ public:
 	//for recorded perfromance
 	afx_msg void OnFileOpenrecording();
 	afx_msg void OnGeneratePlayrecording();
+	afx_msg void OnGenerateApplynoisegate();
+	afx_msg void OnGenerateDynamicrangecompression();
 };
 

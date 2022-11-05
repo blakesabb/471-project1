@@ -133,6 +133,8 @@ BEGIN
         MENUITEM "&1000Hz Tone",                ID_GENERATE_1000HZTONE
         MENUITEM "Synthesizer",                 ID_GENERATE_SYNTHESIZER
         MENUITEM "&Play Recording",             ID_GENERATE_PLAYRECORDING
+        MENUITEM "&Apply Noise Gate",           ID_GENERATE_APPLYNOISEGATE
+        MENUITEM "&Dynamic Range Compression",  ID_GENERATE_DYNAMICRANGECOMPRESSION
     END
     POPUP "&Edit"
     BEGIN

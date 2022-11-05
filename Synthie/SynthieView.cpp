@@ -47,6 +47,8 @@ BEGIN_MESSAGE_MAP(CSynthieView, CWnd)
 	ON_COMMAND(ID_FILE_OPENSCORE, &CSynthieView::OnFileOpenscore)
 	ON_COMMAND(ID_FILE_OPENRECORDING, &CSynthieView::OnFileOpenrecording)
 	ON_COMMAND(ID_GENERATE_PLAYRECORDING, &CSynthieView::OnGeneratePlayrecording)
+	ON_COMMAND(ID_GENERATE_APPLYNOISEGATE, &CSynthieView::OnGenerateApplynoisegate)
+	ON_COMMAND(ID_GENERATE_DYNAMICRANGECOMPRESSION, &CSynthieView::OnGenerateDynamicrangecompression)
 END_MESSAGE_MAP()
 
 
@@ -421,4 +423,16 @@ void CSynthieView::OnGeneratePlayrecording()
 	// Call to close the generator output
 	ProcessEnd();
 }
+
+void CSynthieView::OnGenerateApplynoisegate()
+{
+	m_apply_noise_gating = !m_apply_noise_gating;
+}
+
+
+void CSynthieView::OnGenerateDynamicrangecompression()
+{
+	m_apply_dynamic_range_compression = !m_apply_dynamic_range_compression;
+}
+
 
