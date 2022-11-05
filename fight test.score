@@ -29,6 +29,23 @@
       <note measure="6" beat="2" duration="1" note="F4"/>
        
       <note measure="7" beat="1" duration="3" note="Bb4"/>
+
+            <note measure="1" beat="1" duration="0.5" note="Bb4"/>
+      <note measure="10" beat="1" duration="0.5" note="Bb4"/>
+       
+      <note measure="11" beat="1" duration="0.5" note="Bb4"/>
+      <note measure="11" beat="2" duration="0.5" note="Bb4"/>
+      <note measure="13" beat="1" duration="0.5" note="Bb4"/>
+
+      <note measure="14" beat="1" duration="0.5" note="G4"/>
+      <note measure="14" beat="1.5" duration="0.5" note="F#4"/>
+      <note measure="14" beat="2" duration="0.5" note="G4"/>
+      <note measure="14" beat="2.5" duration="0.5" note="G#4"/>
+
+      <note measure="15" beat="1" duration="1" note="A4"/>
+      <note measure="15" beat="2" duration="1" note="F4"/>
+       
+      <note measure="16" beat="1" duration="3" note="Bb4"/>
       </instrument>
 </score>
 
