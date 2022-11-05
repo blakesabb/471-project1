@@ -83,8 +83,25 @@ bool CSynthesizer::Generate(double * frame)
 			instrument = m_pianosynthesize.CreateInstrument();
 			m_pianosynthesize.SetNote(note);
 		}
+		if (note->Instrument() == L"Reverb")
+		{
+			m_reverb.SetNote(note);
+		}
+		if (note->Instrument() == L"Flanging")
+		{
+			m_flanging.SetNote(note);
+		}
+		if (note->Instrument() == L"Limiter")
+		{
+			m_limiter.SetNote(note);
+		}
+		if (note->Instrument() == L"NoiseGate")
+		{
+			m_noiseGate.SetNote(note);
+		}
+
 		// Configure the instrument object
-		if (instrument != NULL)
+		else if (instrument != NULL)
 		{
 			instrument->SetSampleRate(GetSampleRate());
 			instrument->SetSecondsPerBeat(m_secperbeat); //add: needed
@@ -147,6 +164,28 @@ bool CSynthesizer::Generate(double * frame)
 		// Move to the next instrument in the list
 		node = next;
 	}
+	// 
+	// phase 3b: Process the effects
+	// 
+
+	double rframe[2];
+	m_reverb.Process(frame, rframe);
+
+	double fframe[2];
+	m_flanging.Process(frame, fframe);
+
+	double lframe[2];
+	m_limiter.Process(frame, lframe);
+
+	double nframe[2];
+	m_noiseGate.Process(frame, nframe);
+
+	for (int c = 0; c < 2; c++)
+	{
+		frame[c] = rframe[c] + fframe[c] + lframe[c] + nframe[c];
+	}
+
+
 	//
 	// Phase 4: Advance the time and beats
 	//

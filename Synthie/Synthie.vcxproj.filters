@@ -75,7 +75,6 @@
     <ClCompile Include="AR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< Updated upstream
     <ClCompile Include="Additive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -83,7 +82,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CWaveTable.cpp">
-=======
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="PianoEnvelopes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -94,7 +94,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PianoInstrumentSynth.cpp">
->>>>>>> Stashed changes
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectReverb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectFlanging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectLimiter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectNoiseGate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -168,7 +179,6 @@
     <ClInclude Include="AR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
     <ClInclude Include="Additive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -176,7 +186,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CWaveTable.h">
-=======
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="PianoEnvelopes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -187,7 +198,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PianoInstrumentSynth.h">
->>>>>>> Stashed changes
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectReverb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectFlanging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectLimiter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectNoiseGate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

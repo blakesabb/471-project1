@@ -133,6 +133,10 @@
     <ClCompile Include="audio\DirSoundSource.cpp" />
     <ClCompile Include="audio\DirSoundStream.cpp" />
     <ClCompile Include="CWaveTable.cpp" />
+    <ClCompile Include="EffectLimiter.cpp" />
+    <ClCompile Include="EffectNoiseGate.cpp" />
+    <ClCompile Include="EffectReverb.cpp" />
+    <ClCompile Include="EffectFlanging.cpp" />
     <ClCompile Include="Instrument.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Note.cpp" />
@@ -165,6 +169,10 @@
     <ClInclude Include="audio\DirSoundSource.h" />
     <ClInclude Include="audio\DirSoundStream.h" />
     <ClInclude Include="CWaveTable.h" />
+    <ClInclude Include="EffectLimiter.h" />
+    <ClInclude Include="EffectNoiseGate.h" />
+    <ClInclude Include="EffectReverb.h" />
+    <ClInclude Include="EffectFlanging.h" />
     <ClInclude Include="Instrument.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Note.h" />

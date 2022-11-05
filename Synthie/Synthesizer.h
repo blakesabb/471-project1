@@ -8,6 +8,11 @@ using namespace std;
 #include "Note.h"
 #include <CWaveTable.h>
 
+#include "EffectReverb.h"
+#include "EffectFlanging.h"
+#include "EffectLimiter.h"
+#include "EffectNoiseGate.h"
+
 class CSynthesizer
 {
 public:
@@ -60,5 +65,10 @@ public:
 	double GetTime();
 
 	double t;
+private:
+	EffectReverb m_reverb;
+	EffectFlanging m_flanging;
+	EffectLimiter m_limiter;
+	EffectNoiseGate m_noiseGate;
 };
 
