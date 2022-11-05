@@ -49,11 +49,11 @@ bool CSynthesizerAdd::Generate()
 
 	m_frame[1] = sinewave.Frame(1); // set frame 1
 
-	double mutliplier = 0; // start mult
+	double mutliplier = 1; // start mult
 
 	double constant = 0; // start neg constant 
 	
-
+	/*
 	if (sustain > 1.5)  // if susatin is less than 1.5 make the constant 1
 	{
 		constant = 1;
@@ -84,7 +84,7 @@ bool CSynthesizerAdd::Generate()
 	{
 		mutliplier = sustain; // if none of that is ture set the new multiplyer by sustain
 	}
-
+	*/
 	m_frame[0] = mutliplier * m_frame[0]; // set frame 0 by multiplyer by multiplying (get it) to the current frame 0
 	
 	m_frame[1] =  mutliplier * m_frame[1]; // set frame 1 by multiplyer by multiplying (get it) to the current frame 1

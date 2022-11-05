@@ -45,7 +45,9 @@ private:
     double m_release = 0.1;
 
     // Getting frequency 
-    double m_freq = m_sinewave.GetFreq();
+    double m_freq;
+
+    double m_amplitute = 1;
 
 };
 

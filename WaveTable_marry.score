@@ -17,9 +17,9 @@
 	<note measure="6" beat="1" duration="0.1" note="RE" Attack = "0.01"/>
 	<note measure="6" beat="1" duration="0.5" note="RE" Sustain = "0.1"/>
 
-	<note measure="7" beat="1" duration="0.5" note="MI" Pitch = "2"/>
-	<note measure="7" beat="1.5" duration="0.5" note="SOL" Pitch = "2"/>
-	<note measure="8" beat="1" duration="0.5" note="SOL" Pitch = "2"/>
+	<note measure="7" beat="1" duration="0.5" note="MI"/>
+	<note measure="7" beat="1.5" duration="0.5" note="SOL"/>
+	<note measure="8" beat="1" duration="0.5" note="SOL"/>
 
 	<note measure="9" beat="1" duration="0.1" note="MI" Attack = "0.01"/>
 	<note measure="9" beat="1.5" duration="0.1" note="RE" Attack = "0.01"/>
@@ -33,9 +33,17 @@
 
 	<note measure="13" beat="1" duration="0.7" note="RE" CrossFadeOut = "0.2"/>
 	<note measure="13" beat="1.5" duration="0.7" note="RE" CrossFadeIn = "0.2"/>
-	<note measure="14" beat="1" duration="0.6" note="MI" CrossFadeOut = "0.2"/>
+	<note measure="14" beat="1" duration="0.7" note="MI" CrossFadeOut = "0.2"/>
 	<note measure="14" beat="1.5" duration="0.7" note="RE" CrossFadeIn = "0.2"/>
-	<note measure="15" beat="1" duration="0.7" note="DO" Attack = "0.01"/>
+	<note measure="15" beat="1" duration="0.7" note="DO" CrossFadeIn = "0.2"/>
+
+	<note measure="16" beat="1" duration="0.5" note="DO" Pitch = "1.12246"/>
+	<note measure="16" beat="1.5" duration="0.5" note="DO" Pitch = "1.12246"/>
+	<note measure="17" beat="1" duration="0.5" note="DO" Pitch = "1.5429"/>
+	<note measure="17" beat="1.5" duration="0.5" note="DO" Pitch = "1.5429"/>
+
+	<note measure="18" beat="1" duration="3.0" note="DO" A = "0.2" D = "1.0" S = "2.0" R = "1.0"/>
+
 
    </instrument>
 </score>

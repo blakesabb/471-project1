@@ -100,7 +100,7 @@ void CAdditive::GenerateWaveTable()
 
 	auto full_dur = duration * GetSampleRate(); // full duration: what will will iterate to 
 
-	for (int i = 0; i < int(full_dur); i++, time = time +1 / GetSampleRate()) // if the iter is less than the full duration
+	for (int i = 0; i < int(full_dur); i++, time = time + 1./ GetSampleRate()) // if the iter is less than the full duration
 	{
 
 		double val = 0; // set sample

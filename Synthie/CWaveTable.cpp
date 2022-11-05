@@ -40,25 +40,25 @@ bool CWaveTable::Generate()
     // R : !!!! m_release is the time before ending !!!!!
     if (m_time > (m_duration - m_release))
     {
-        m_frame[0] = m_sinewave.Frame(0) * (m_attack) / (m_decay) * (m_duration - m_time) / (m_release);
-        m_frame[1] = m_sinewave.Frame(1) * (m_attack) / (m_decay) * (m_duration - m_time) / (m_release);
+        m_frame[0] = m_amplitute * m_sinewave.Frame(0) * (m_attack) / (m_decay) * (m_duration - m_time) / (m_release);
+        m_frame[1] = m_amplitute * m_sinewave.Frame(1) * (m_attack) / (m_decay) * (m_duration - m_time) / (m_release);
     }
 
     // A 
     else if (m_time < m_attack)
     {
-        m_frame[0] = m_sinewave.Frame(0) * m_time / m_attack;
-        m_frame[1] = m_sinewave.Frame(1) * m_time / m_attack;
+        m_frame[0] = m_amplitute * m_sinewave.Frame(0) * m_time / m_attack;
+        m_frame[1] = m_amplitute * m_sinewave.Frame(1) * m_time / m_attack;
     }
     // D
     else if (m_time < m_decay) {
-        m_frame[0] = m_sinewave.Frame(0) * (m_decay - m_time + m_attack) / (m_decay);
-        m_frame[1] = m_sinewave.Frame(1) * (m_decay - m_time + m_attack) / (m_decay);
+        m_frame[0] = m_amplitute * m_sinewave.Frame(0) * (m_decay - m_time + m_attack) / (m_decay);
+        m_frame[1] = m_amplitute * m_sinewave.Frame(1) * (m_decay - m_time + m_attack) / (m_decay);
     }
     // S
     else {
-        m_frame[0] = m_sinewave.Frame(0) * (m_attack) / (m_decay);
-        m_frame[1] = m_sinewave.Frame(1) * (m_attack) / (m_decay);
+        m_frame[0] = m_amplitute *  m_sinewave.Frame(0) * (m_attack) / (m_decay);
+        m_frame[1] = m_amplitute *  m_sinewave.Frame(1) * (m_attack) / (m_decay);
     }
 
 
@@ -106,6 +106,9 @@ void CWaveTable::SetNote(CNote* note)
         else if (name == "note")
         {
             SetFreq(wtToFrequency(value.bstrVal));
+
+            // Store the frequency for Pitch and Attack
+            m_freq = m_sinewave.GetFreq();
         }
 
         // For Envolope: ADSR
@@ -146,12 +149,7 @@ void CWaveTable::SetNote(CNote* note)
             value.ChangeType(VT_I4);
             int speed = value.intVal;
 
-
-            // Speed up by changing the duration by ratio to the speed
-            m_duration = m_duration / speed;
-            m_attack = m_attack / speed;
-            m_decay = m_decay / speed;
-            m_release = m_decay / speed;
+            SetFreq(m_freq * speed);
         }
 
         // Attack And Sustain Wave
@@ -161,6 +159,10 @@ void CWaveTable::SetNote(CNote* note)
             m_attack = m_decay = value.dblVal;
             m_attack = m_decay = value.dblVal;
             m_release = m_duration - m_attack;
+
+            // Making the beat more clearly 
+            m_amplitute = 2;
+            SetFreq(m_freq * 1.03);
         }
         else if (name == "Sustain")
         {
