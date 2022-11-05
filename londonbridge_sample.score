@@ -9,12 +9,12 @@
           <note measure="2" beat="1" duration="6" note="E4" dynamic = "0.75"/>
           <note measure="2" beat="1" duration="1" note="F4"/>
           <note measure="2" beat="1" duration="1" note="G4"/>
-          <note measure="3" beat="1" duration="3" note="D4" pedal = "press" />
+          <note measure="3" beat="1" duration="3" note="D4" />
 
           <note measure="3" beat="1" duration="1" note="E4"/>
-          <note measure="3" beat="1" duration="3" note="F4" pedal = "release" />
+          <note measure="3" beat="1" duration="attack" note="F4" />
           <note measure="4" beat="1" duration="1" note="E4"/>
-          <note measure="4" beat="1" duration="1" note="F4"/>
+          <note measure="4" beat="1" duration="release" note="F4"/>
 
           <note measure="4" beat="1" duration="1" note="G4"/>
           <note measure="5" beat="1" duration="6" note="G4" dynamic = "0.5"/>
