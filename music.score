@@ -34,16 +34,10 @@
 	<note measure="14" beat="1.5" duration="0.7" note="RE" CrossFadeIn = "0.2"/>
 	<note measure="15" beat="1" duration="0.7" note="DO" CrossFadeIn = "0.2"/>
 
-
 	<note measure="16" beat="1" duration="6" note="G4"/>
       <note measure="23" beat="1" duration="1" note="A4"/>
       <note measure="24" beat="1.5" duration="1" note="G4"/>
       <note measure="25" beat="1" duration="1" note="F4"/>
-
-      <note measure="26" beat="1" duration="6" note="E4"/>
-      <note measure="33" beat="1" duration="1" note="F4"/>
-      <note measure="34" beat="1" duration="1" note="G4"/>
-      <note measure="35" beat="1" duration="3" note="D4" />
 
       <note measure="36" beat="1" duration="1" note="E4"/>
       <note measure="37" beat="1" duration="1" note="F4" />
@@ -69,11 +63,17 @@
    </instrument>
 
 <instrument instrument="Additive">
-	<note measure="7" beat="1" duration="0.5" note="MI" vibrato ="1, .5, .25, .1"/>
-	<note measure="7" beat="1.5" duration="0.5" note="SOL" vibrato ="1, .5, .25, .1"/>
-	<note measure="8" beat="1" duration="0.5" note="SOL" vibrato ="1, .5, .25, .1"/>
+	<note measure="8" beat="1" duration="0.5" note="SOL" vibrato ="1"/>
 </instrument>
 
+
+
+<instrument instrument="Echo">
+      <note measure="26" beat="1" duration="6" note="E4" wet="0.5" dry="0.25"/>
+      <note measure="33" beat="1" duration="1" note="F4" wet="0.5" dry="0.25"/>
+      <note measure="34" beat="1" duration="1" note="G4" wet="0.5" dry="0.25"/>
+      <note measure="35" beat="1" duration="3" note="D4" wet="0.5" dry="0.25" />
+</instrument>
 
 
 </score>
